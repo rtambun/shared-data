@@ -15,15 +15,18 @@ class IncidentTest {
     public void noArgsConstructor() {
         Incident incident = new Incident();
 
+        assertThat(incident.getLabel()).isNull();
         assertThat(incident.getCloseDate()).isNull();
         assertThat(incident.getCreatedDate()).isNull();
         assertThat(incident.getStatus()).isNull();
 
         Instant now = Instant.now();
+        incident.setLabel("label");
         incident.setCreatedDate(now);
         incident.setCloseDate(now);
         incident.setStatus(Status.OPEN);
 
+        assertThat(incident.getLabel()).isEqualTo("label");
         assertThat(incident.getCloseDate()).isEqualTo(now);
         assertThat(incident.getCreatedDate()).isEqualTo(now);
         assertThat(incident.getStatus()).isEqualTo(Status.OPEN);
@@ -33,8 +36,9 @@ class IncidentTest {
     public void allArgsConstructor() {
         Instant now = Instant.now();
 
-        Incident incident = new Incident(now, now, Status.ON_GOING);
+        Incident incident = new Incident("label", now, now, Status.ON_GOING);
 
+        assertThat(incident.getLabel()).isEqualTo("label");
         assertThat(incident.getCloseDate()).isEqualTo(now);
         assertThat(incident.getCreatedDate()).isEqualTo(now);
         assertThat(incident.getStatus()).isEqualTo(Status.ON_GOING);
@@ -62,7 +66,7 @@ class IncidentTest {
 
     @Test
     public void serializingTest() throws JsonProcessingException {
-        Incident actual = new Incident(Instant.now(), Instant.now(), Status.CLOSED);
+        Incident actual = new Incident("label", Instant.now(), Instant.now(), Status.CLOSED);
         String json = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(actual);
         System.out.println(json);
     }

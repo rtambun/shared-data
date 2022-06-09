@@ -10,9 +10,9 @@ import lombok.*;
 @AllArgsConstructor
 public class IncidentKafka {
 
-    private final static String INCIDENT_PAYLOAD_TYPE_INCIDENT = "Incident";
-    private final static String INCIDENT_PAYLOAD_CATEGORY_INCIDENT_STATUS_UPDATE = "IncidentStatusUpdated";
-    private final static String INCIDENT_PAYLOAD_CATEGORY_INCIDENT_REMOVE_BLUE_INDICATOR_FROM_MAP =
+    public final static String INCIDENT_PAYLOAD_TYPE_INCIDENT = "Incident";
+    public final static String INCIDENT_PAYLOAD_CATEGORY_INCIDENT_STATUS_UPDATE = "IncidentStatusUpdated";
+    public final static String INCIDENT_PAYLOAD_CATEGORY_INCIDENT_REMOVE_BLUE_INDICATOR_FROM_MAP =
             "RemovedBlueIndicatorFromMap";
 
     @JsonProperty(value="Payload")

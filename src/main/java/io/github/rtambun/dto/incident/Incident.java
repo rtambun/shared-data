@@ -13,6 +13,8 @@ import java.time.Instant;
 @AllArgsConstructor
 public class Incident implements Serializable {
 
+    private String label;
+
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "UTC")
     private Instant createdDate;
 
