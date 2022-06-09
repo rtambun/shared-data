@@ -21,5 +21,5 @@ public class Incident implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "UTC")
     private Instant closeDate;
 
-    private Enum<Status> status;
+    private Status status;
 }

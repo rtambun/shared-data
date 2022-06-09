@@ -3,9 +3,13 @@ package io.github.rtambun.dto.incident;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import io.github.rtambun.dto.util.InstantGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -44,10 +48,9 @@ class IncidentTest {
         assertThat(incident.getStatus()).isEqualTo(Status.ON_GOING);
     }
 
-    //TODO: Wait for answer from stackoverflow.
-    /** @Test
+    @Test
     public void deserializingTest() throws JsonProcessingException {
-        String payloadJson = "{" +
+        String payloadJson = "{\"label\":\"label\"," +
                 "\"createdDate\":\"08/06/2022 08:08:52\"," +
                 "\"closeDate\":\"08/06/2022 08:08:52\"," +
                 "\"status\":\"CLOSED\"" +
@@ -56,19 +59,27 @@ class IncidentTest {
                 .registerModule(new JavaTimeModule())
                 .readValue(payloadJson, Incident.class);
 
-        Incident expected = new Incident(
+        Incident expected = new Incident("label",
                 InstantGenerator.generateInstantUTC(2022,6,8, 8, 8, 52),
                 InstantGenerator.generateInstantUTC(2022,6, 8, 8, 8, 52),
-                Status.OPEN);
+                Status.CLOSED);
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
-    }*/
+    }
 
     @Test
     public void serializingTest() throws JsonProcessingException {
-        Incident actual = new Incident("label", Instant.now(), Instant.now(), Status.CLOSED);
-        String json = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(actual);
-        System.out.println(json);
+        Instant now = Instant.now();
+        String stringNow = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(LocalDateTime.ofInstant(now, ZoneOffset.UTC));
+        Incident test = new Incident("label", now, now, Status.CLOSED);
+        String actual = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(test);
+        String expected = "{" +
+                "\"label\":\"label\"," +
+                "\"createdDate\":\"" + stringNow + "\"," +
+                "\"closeDate\":\"" + stringNow + "\"," +
+                "\"status\":\"CLOSED\"" +
+                "}";
+        assertThat(actual).isEqualTo(expected);
     }
 
 }

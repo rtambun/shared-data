@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum Status {
-    OPEN("OPEN"),
-    ON_GOING("ON_GOING"),
-    CLOSED("CLOSED");
-
-    private String status;
+    OPEN,
+    ON_GOING,
+    CLOSED
 }
