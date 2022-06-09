@@ -1,9 +1,8 @@
-package com.rtambun.dto.incident;
+package io.github.rtambun.dto.incident;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.rtambun.dto.util.InstantGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package com.rtambun.dto.incident;
+package io.github.rtambun.dto.incident;
 
 import lombok.AllArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.rtambun.dto.util;
+package io.github.rtambun.dto.util;
 
 import java.time.Instant;
 import java.time.ZoneId;

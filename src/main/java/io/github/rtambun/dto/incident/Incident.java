@@ -1,4 +1,4 @@
-package com.rtambun.dto.incident;
+package io.github.rtambun.dto.incident;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
