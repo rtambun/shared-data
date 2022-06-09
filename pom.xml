@@ -11,7 +11,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.example</groupId>
+    <groupId>io.github.rtambun</groupId>
     <artifactId>shared-data</artifactId>
     <version>0.1.0</version>
 
