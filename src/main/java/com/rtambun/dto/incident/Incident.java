@@ -9,12 +9,12 @@ import java.io.Serializable;
 import java.time.Instant;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Incident implements Serializable {
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "UTC")
-    private Instant createdData;
+    private Instant createdDate;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "UTC")
     private Instant closeDate;
